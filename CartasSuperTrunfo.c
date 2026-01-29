@@ -1,90 +1,144 @@
 #include <stdio.h>
-
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das cartas
-// Objetivo: No nível novato você deve criar as cartas representando as cidades utilizando scanf para entrada de dados e printf para exibir as informações.
-
-int main() {
-    printf("desafio super trunfo\n");
- // Área para definição das variáveis para armazenar as propriedades das cidades
-// carta A
-char estadoA;
-char codigoA[5]; 
-char nomeA[50];
-int populacaoA;
+int main(){
+//Área para definição das variáveis para armazenar as propriedades das cidades    
+    // --- VARiÁVEIS CARTA A ---
+char estadoA[3];
+char codigocartaA[6]; 
+char nomecidadeA[50];
+int quantidade_populacionalA;
 float pibA;
 float areaA;
-int pontosA;
+int pontos_turisticosA;
+float densidade_populacionalA;
+float pib_per_capitaA;
+int opcao;
 
-//carta B
-char estadoB;
-char codigoB[5]; 
-char nomeB[50];
-int populacaoB;
+    // --- VARIÁVEIS CARTA B ---
+char estadoB[3];
+char codigocartaB[6]; 
+char nomecidadeB[50];
+int quantidade_populacionalB;
 float pibB;
 float areaB;
-int pontosB;
-  // Área para entrada de dados
-  //carta A
-printf("estado(A-H): ");
-scanf("%s",&estadoA);
+int pontos_turisticosB;
+float densidade_populacionalB;
+float pib_per_capitaB;
+//int opcao;
 
-printf("codigo da carta: ");
-scanf("%s",&codigoA);
+    // --- CADASTRO CARTA A ---
+    printf("--- Cadastro Carta A ---\n");
+    printf("Estado (A-H): ");
+    scanf(" %2s", estadoA);
+    printf("Código: ");
+    scanf(" %5s", codigocartaA);
+    printf("Cidade: ");
+    scanf(" %49s", nomecidadeA);
+    printf("Quantidade populacional: ");
+    scanf("%d", &quantidade_populacionalA);
+    printf("Área (km²): ");
+    scanf("%f", &areaA);
+    printf("PIB: ");
+    scanf("%f", &pibB);
+    printf("Pontos Turísticos: ");
+    scanf("%d", &pontos_turisticosA);
 
-printf("nome da cidade: ");
-scanf("%s",&nomeA);
+    densidade_populacionalA = (float)quantidade_populacionalA / areaA;
+    pib_per_capitaA = (pibA * 1000000000) / (float)quantidade_populacionalA;
 
-printf("populacao: ");
-scanf("%d",&populacaoA);
+    // --- CADASTRO CARTA B ---
+    printf("\n--- Cadastro Carta B ---\n");
+    printf("Estado (A-H): ");
+    scanf("  %s", estadoB);
+    printf("Código: ");
+    scanf("  %s", codigocartaB);
+    printf("Cidade: ");
+    scanf(" %s", nomecidadeB);
+    printf("Quantidade populacional: ");
+    scanf("%d", &quantidade_populacionalB);
+    printf("Área (km²): ");
+    scanf("%f", &areaB);
+    printf("PIB: ");
+    scanf("%f", &pibB);
+    printf("Pontos Turísticos: ");
+    scanf("%d", &pontos_turisticosB);
 
-printf("pib: ");
-scanf("%f",&pibA);
+    densidade_populacionalB = (float)quantidade_populacionalB / areaB;
+    pib_per_capitaB = (pibB * 1000000000) / (float)quantidade_populacionalB;
 
-printf("area (em km2): ");
-scanf("%f",&areaA);
+    // --- MENU INTERATIVO ---
+    printf("\nEscolha o atributo para comparação:\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica\n");
+    printf("Opção: ");
+    scanf("%d", &opcao);
+    
 
-printf("numero de pontos turisticos: ");
-scanf("%d",&pontosA);
-  
-//carta B
-printf("estado(A-H): ");
-scanf("%s",&estadoB);
+    printf("\n=== RESULTADO DA COMPARAÇÃO ===\n");
 
-printf("codigo da carta: ");
-scanf("%s",&codigoB);
+    switch (opcao) {
+        case 1: // População
+            printf("Atributo: População\n");
+            printf("%s: %d\n", nomecidadeA, quantidade_populacionalA);
+            printf("%s: %d\n", nomecidadeB, quantidade_populacionalB);
+            if (quantidade_populacionalA > quantidade_populacionalB)
+             printf("Vencedor: %s\n", nomecidadeA);
+            else if (quantidade_populacionalB > quantidade_populacionalA)
+             printf("Vencedor: %s\n", nomecidadeB);
+            else 
+            printf("Empate!\n");
+            break;
 
-printf("nome da cidade: ");
-scanf("%s",&nomeB);
+        case 2: // Área
+            printf("Atributo: Área\n");
+            printf("%s: %.2f\n", nomecidadeA, areaA);
+            printf("%s: %.2f\n", nomecidadeB, areaB);
+            if (areaA > areaB)
+             printf("Vencedor: %s\n", nomecidadeA);
+            else if (areaB > areaA) 
+            printf("Vencedor: %s\n", nomecidadeB);
+            else 
+            printf("Empate!\n");
+            break;
 
-printf("populacao: ");
-scanf("%d",&populacaoB);
+        case 3: // PIB
+            printf("Atributo: PIB\n");
+            printf("%s: %.2f\n", nomecidadeA, pibA);
+            printf("%s: %.2f\n", nomecidadeB, pibB);
+            if (pibA > pibB)
+             printf("Vencedor: %s\n", nomecidadeA);
+            else if (pibB > pibA)
+             printf("Vencedor: %s\n", nomecidadeB);
+            else
+             printf("Empate!\n");
+            break;
 
-printf("pib: ");
-scanf("%f",&pibB);
+        case 4: // Pontos Turísticos
+            printf("Atributo: Pontos Turísticos\n");
+            printf("%s: %d\n", nomecidadeA, pontos_turisticosA);
+            printf("%s: %d\n", nomecidadeB, pontos_turisticosB);
+            if (pontos_turisticosA > pontos_turisticosB)
+             printf("Vencedor: %s\n", nomecidadeA);
+            else if (pontos_turisticosB > pontos_turisticosA)
+             printf("Vencedor: %s\n", nomecidadeB);
+            else
+             printf("Empate!\n");
+            break;
 
-printf("area (em km2): ");
-scanf("%f",&areaB);
+        case 5: // Densidade Demográfica (REGRA INVERTIDA: Menor vence)
+            printf("Atributo: Densidade Demográfica\n");
+            printf("%s: %.2f hab/km²\n", nomecidadeA, densidade_populacionalA);
+            printf("%s: %.2f hab/km²\n", nomecidadeB, densidade_populacionalB);
+            if (densidade_populacionalA < densidade_populacionalB) printf("Vencedor: %s\n", nomecidadeA);
+            else if (densidade_populacionalB < densidade_populacionalA) printf("Vencedor: %s\n", nomecidadeB);
+            else printf("Empate!\n");
+            break;
 
-printf("numero de pontos turisticos: ");
-scanf("%d",&pontosB);
-  // Área para exibição dos dados da cidade
-//carta A
-printf("\n---dados da cidade registrados A---\n");
-printf("estados: %c\n",estadoA);
-printf("codigo:%s\n",nomeA);
-printf("populacao: %d\n",populacaoA);
-printf("pib:%.2f\n",pibA);
-printf("area:%.2f\n",areaA);
-printf("pontos turisticos:%d\n",pontosA);
+        default:
+            printf("Opção inválida!\n");
+    }
 
-//carta B
-printf("\n---dados da cidade registrados B---\n");
-printf("estados: %c\n",estadoB);
-printf("codigo:%s\n",nomeB);
-printf("populacao: %d\n",populacaoB);
-printf("pib:%.2f\n",pibB);
-printf("area:%.2f\n",areaB);
-printf("pontos turisticos:%d\n",pontosB);
-return 0;
-} 
+    return 0;
+}
